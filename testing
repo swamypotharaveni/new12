@@ -1,0 +1,48 @@
+function CompareGoogleLocation(data, jsonData) {
+        var respArray = [];
+        var xyz = [];
+        var postData = { data: [] };
+        var J = JSON.parse(data)
+
+        var locationIds = J.data.data.map(function (location) {
+            return location.location_id;
+        });
+        //console.log(locationIds);
+
+        if (jsonData) {
+            //    let googleobj = JSON.stringify(jsonData);
+            parsedData = JSON.parse(jsonData);
+            var getlocationname = parsedData.getlocationdata.locations;
+
+            for (var i = 0; i < getlocationname.length; i++) {
+                var e = getlocationname[i];
+                var googlelocationId = e.name.split('/')[1];
+                //console.log(googlelocationId);
+
+                if (locationIds.indexOf(googlelocationId) !== -1) {
+                    respArray.push(e);
+                } else {
+                    var xyzJson = {
+                        "google_account_name": "sksk",
+                        "google_account_id": "account",
+                        "location_id": e.name.split('/')[1],
+                        "location_name": e.title,
+                        "store_address": e.storefrontAddress,
+                        "is_controller": true,
+                        "bu_id": null,
+                        "number_id": null,
+                        "ims_connection_id": 1690265828022264,
+                        "reviewrequestformid": null
+                    };
+
+
+                    //xyz.push(xyzJson);
+                    //xyz.push(xyzJson);
+                    var tempresult = JSON.stringify(xyzJson);
+                    var tempresultData = JSON.parse(tempresult);
+                    postData.data.push(tempresultData);
+                }
+            }
+            return JSON.stringify(postData);
+        }
+    }
