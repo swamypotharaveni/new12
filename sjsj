@@ -1,0 +1,593 @@
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<style type="text/css">/*==== Start Rating Html =====*/
+
+    .rating-stars {
+        display: block;
+        width: 28vmin;
+        padding: 0.5vmin 2vmin 0.5vmin 2vmin;
+        /* background: linear-gradient(90deg, #ffffff90 40vmin, #fff0 40vmin 100%); */
+        background-color: #e8e8e8;
+        border-radius: 5vmin;
+        position: relative;
+    }
+
+    .rating-counter {
+        font-size: 2.2vmin;
+        font-family: Arial, Helvetica, serif;
+        color: #000;
+        width: 5vmin;
+        text-align: center;
+        /* background: #0006; */
+        background: #d3d4d6;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        border-radius: 0 5vmin 5vmin 0;
+        line-height: 4.5vmin;
+    }
+
+    .rating-counter:before {
+        content: "0";
+        transition: all 0.25s ease 0s;
+    }
+
+    .dynamic-fields {
+        text-align: center;
+    }
+
+    .rating-stars input {
+        display: none;
+    }
+
+    .rating-stars label {
+        width: 2vmin;
+        height: 2vmin;
+        background: #000b;
+        display: inline-flex;
+        cursor: pointer;
+        margin: 0.5vmin 0.65vmin;
+        transition: all 1s ease 0s;
+        clip-path: polygon(50% 0%, 66% 32%, 100% 38%, 78% 64%, 83% 100%, 50% 83%, 17% 100%, 22% 64%, 0 38%, 34% 32%);
+    }
+
+    .rating-stars label[for=rs0] {
+        display: none;
+    }
+
+    .rating-stars label:before {
+        width: 90%;
+        height: 90%;
+        content: "";
+        background: orange;
+        /* background: linear-gradient(90deg, yellow, orange 30% 50%, #f0f0f0 50%, 70%, #eff0f2 100%); */
+        z-index: -1;
+        display: block;
+        margin-left: 5%;
+        margin-top: 5%;
+        clip-path: polygon(50% 0%, 66% 32%, 100% 38%, 78% 64%, 83% 100%, 50% 83%, 17% 100%, 22% 64%, 0 38%, 34% 32%);
+        /* background: linear-gradient(90deg, yellow, orange 30% 50%, #184580 50%, 70%, #173a75 100%); */
+        background-size: 205% 100%;
+        background-position: 0 0;
+    }
+
+    .rating-stars label:hover:before {
+        /* background: orange;
+        background: linear-gradient(90deg, yellow, orange 30% 50%, #f0f0f0 50%, 70%, #eff0f2 100%); */
+        transition: all 0.25s ease 0s;
+    }
+
+    .rating-stars input:checked+label~label:before {
+        /* background: orange;
+        background: linear-gradient(90deg, yellow, orange 30% 50%, #f0f0f0 50%, 70%, #eff0f2 100%); */
+        background-position: 100% 0;
+        transition: all 0.25s ease 0s;
+    }
+
+    .rating-stars input:checked+label~label:hover:before {
+        /* background: orange;
+        background: linear-gradient(90deg, yellow, orange 30% 50%, #f0f0f0 50%, 70%, #eff0f2 100%); */
+        background-position: 0% 0
+    }
+
+
+    #rs1:checked~.rating-counter:before {
+        content: "1";
+    }
+
+    #rs2:checked~.rating-counter:before {
+        content: "2";
+    }
+
+    #rs3:checked~.rating-counter:before {
+        content: "3";
+    }
+
+    #rs4:checked~.rating-counter:before {
+        content: "4";
+    }
+
+    #rs5:checked~.rating-counter:before {
+        content: "5";
+    }
+
+    .rating-stars label+input:checked~.rating-counter:before {
+        color: #000 !important;
+        transition: all 0.25s ease 0s;
+    }
+
+
+
+
+
+    .rating-stars label:hover~.rating-counter:before {
+        color: #9aacc6 !important;
+        transition: all 0.5s ease 0s;
+        animation: pulse 1s ease 0s infinite;
+    }
+
+    @keyframes pulse {
+        50% {
+            font-size: 6.25vmin;
+        }
+    }
+
+    .rating-stars label[for=rs1]:hover~.rating-counter:before {
+        content: "1" !important;
+    }
+
+    .rating-stars label[for=rs2]:hover~.rating-counter:before {
+        content: "2" !important;
+    }
+
+    .rating-stars label[for=rs3]:hover~.rating-counter:before {
+        content: "3" !important;
+    }
+
+    .rating-stars label[for=rs4]:hover~.rating-counter:before {
+        content: "4" !important;
+    }
+
+    .rating-stars label[for=rs5]:hover~.rating-counter:before {
+        content: "5" !important;
+    }
+
+
+    .rating-stars input:checked:hover~.rating-counter:before {
+        animation: none !important;
+        color: #ffab00 !important;
+    }
+
+    /*==== End Rating Html =====*/
+    /* .m-page {
+        padding: 20px;
+    } */
+
+    .m-page-card {
+        width: 80%;
+        margin: 0 auto;
+        padding: 30px;
+        margin-top: 15px;
+        height: calc(100vh - 140px);
+        overflow: auto;
+        border-radius: 6px;
+        /* height: calc(100vh - 85px);
+  overflow: hidden auto; */
+        background-color: #fff;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    }
+
+    .m-card-header {
+        margin-bottom: 20px;
+    }
+
+    .m-card-header h5 {
+        font-size: 18px;
+        color: #060F18;
+    }
+
+    .m-form label {
+        color: #4F5152;
+        font-size: 14px;
+    }
+
+    .m-form input {
+        border: 1px solid #E1E4E6;
+        border-radius: 5px;
+        font-size: 13px;
+    }
+
+    .m-form .input-group .input-group-text {
+        font-size: 13px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border: none;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .mr-2 {
+        margin-right: 2rem;
+    }
+
+    .btn {
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        vertical-align: middle;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: 0.25rem 0.5rem;
+        font-size: .875rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    .primary-btn {
+        color: #fff;
+        background-color: #249eb1;
+        border-color: #249eb1;
+    }
+
+    .primary-btn:hover {
+        color: #fff;
+        background-color: #1e8291;
+        border-color: #1b7887;
+    }
+
+    .secondary-btn-outline {
+        color: #6c757d;
+        border-color: #6c757d;
+    }
+
+    .secondary-btn-outline:hover {
+        color: #fff;
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+
+    .overlay-footer.position-fixed {
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        bottom: 0;
+        padding: 10px 0;
+        width: 100%;
+        background: #fafbfc;
+        z-index: 999;
+    }
+
+    .file-upld {
+        position: relative;
+    }
+
+    .file-upld#file-upload-button {
+        text-align: right;
+        position: absolute;
+        right: 10px;
+        top: 4px;
+    }
+
+    .file-upld span {
+        display: none;
+    }
+
+    .p-relative {
+        position: relative;
+    }
+
+    .c-logo {
+        margin-bottom: 15px;
+        height: 120px;
+
+    }
+
+    .c-logo img {
+        height: 100%;
+        border-radius: 5px;
+    }
+
+    .c-title {
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+</style>
+<div class="m-page">
+<div class="m-page-card" id="page-content" style="display: none;">
+<div class="row">
+<div class="col-12"><!-- <!--<img src="" id="loader"> --><!-- <div id="loader">Loader</div> -->
+<div>
+<div class="c-logo"><img alt="Logo" id="dynamic_img" /></div>
+
+<div class="form-group m-form">
+<h4 class="c-title" id="title">&nbsp;</h4>
+</div>
+<!-- <div id="loader">Loader</div> -->
+
+<div class="form-group m-form"><label>Name</label> <input class="form-control" display="none" id="name" placeholder="Name" type="text" /></div>
+
+<div class="form-group m-form"><label>Phone</label> <input class="form-control" id="phone" onfocusout="validatePhoneNumber()" placeholder="Phone" type="text" />
+<p id="phone-error" style="font-size:10px;color:red;">&nbsp;</p>
+</div>
+
+<div class="form-group m-form"><label>Email <span class="text-danger">*</span></label> <input class="form-control" id="email" onfocusout="validateEmail()" placeholder="Email" type="mail" />
+<p id="error-message" style="font-size:10px;color:red;">&nbsp;</p>
+</div>
+
+<div class="form-group m-form"><label>Review <span class="text-danger">*</span></label><textarea class="form-control" id="reviews" placeholder="Review" rows="2"></textarea></div>
+
+<div class="form-group m-form p-relative"><label>Rating <span class="text-danger">*</span></label>
+
+<div class="rating-stars"><input class="rs" id="rs0" name="rating" type="radio" value="0" /><label for="rs1">&nbsp;</label> <input class="rs" id="rs1" name="rating" type="radio" value="1" /> <label for="rs2">&nbsp;</label> <input class="rs" id="rs2" name="rating" type="radio" value="2" /> <label for="rs3">&nbsp;</label> <input class="rs" id="rs3" name="rating" type="radio" value="3" /> <label for="rs4">&nbsp;</label> <input class="rs" id="rs4" name="rating" type="radio" value="4" /> <label for="rs5">&nbsp;</label> <input class="rs" id="rs5" name="rating" type="radio" value="5" /> <span class="rating-counter" id="rating-counter">&nbsp;</span></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-12">
+<div class="form-group mb-0 mt-2"><button class="btn primary-btn mr-2" id="cc_save" onclick="save()" type="button">Save</button><button class="btn secondary-btn-outline" onclick="cancel()" type="button">Cancel</button></div>
+</div>
+</div>
+</div>
+
+<div class="new-loader" id="loader1" style="display: flex;">
+<div class="lds-ellipsis">
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+</div>
+</div>
+</div>
+
+<p><input id="custId" name="custId" type="hidden" value="[id]" /></p>
+
+<p><input lid="location_id" name="location_id" type="hidden" value="[lid]" /></p>
+<script>
+    var baseUrl = window.libAuth.base_url;
+    var portal_Settings = JSON.parse(localStorage.getItem("ucapps_portalSettings"));
+
+    var user_App = portal_Settings.app_group_apps.find(x => x.app_name == "uncode");
+
+    user_App.app_json_data = JSON.parse(user_App.app_json_data);
+
+    user_App.shared_environment_details = user_App.app_json_data.shared_environment_details;
+    // var userApp = JSON.parse(localStorage.getItem("ucapps_portalSettings")).find(x => x.app_name == "uncode");
+    var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    var respnse = [];
+    function Get_lib_auth() {
+        const shared_data = user_App.shared_environment_details[1];
+        if (shared_data) {
+            baseUrl = shared_data.base_url + "api/v1/";
+        }
+        var headers = {
+
+            subscribed_tac_baseurl: window.libAuth.base_url,
+            Access_key: window.libAuth.access_key,
+            Account_id: window.libAuth.account_id,
+            Application_id: window.libAuth.app_id,
+            tac_application_id: window.libAuth.app_id,
+            Shared_application_id: window.libAuth.current_app.shared_environment_details[2].application_id,
+            Shared_environment_id: window.libAuth.current_app.shared_environment_details[2].environment_id,
+            Is_from_shared_component: true,
+            "Content-Type": "application/json",
+        };
+        return headers;
+    }
+    window.onload = function () {
+        // Replace 'image_url_here.jpg' with the actual URL of your image
+        var imageUrl = 'file_url';
+
+        // Create an image element
+        var img = new Image();
+
+        // Set the 'src' attribute to the image URL
+        img.src = file_url;
+
+        // Append the image to the 'imageContainer' div
+        var imageContainer = document.getElementById('dynamic_img');
+        imageContainer.appendChild(img);
+    };
+
+    function getById() {
+        const showLoader = document.getElementById('loader1');
+        showLoader.style.display = "flex";
+
+        var headers = Get_lib_auth();
+        let body = {
+            "id": document.getElementById('custId').value,
+            "account_id": window.libAuth.account_id,
+            "application_id": window.libAuth.app_id,
+        }
+        //console.log(cpostbody);
+        var cbody = JSON.stringify(body)
+        fetch(baseUrl + `service_contract/3825775416082620`, {
+            method: "POST",
+            headers: headers,
+            body: cbody,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+
+                // let imageprefix = "https://venus-scocu-assets.s3.amazonaws.com/";
+                let imageid = data.data.logo_src;
+                let text = data.data.title;
+                let elee = document.getElementById('title');
+                elee.innerHTML = text;
+                let final_img = data.data.file_url;
+                let ele = document.getElementById('dynamic_img');
+                let pageContent = document.getElementById('page-content');
+                ele.src = final_img;
+                pageContent.style.display = "block";
+                showLoader.style.display = "none";
+
+            })
+            .catch((e) => {
+                //toastr.error("Error:", e);
+                // alert("Error:",e);
+
+            });
+    }
+
+    function cancel() {
+        if (window.sendData) window.sendData({ type: "cancel" });
+    }
+    function validateEmail() {
+        //alert("hello");
+        const emailInput = document.getElementById("email");
+
+        const errorMessage = document.getElementById("error-message");
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+        const email = emailInput.value.trim();
+        //alert(email);
+
+        if (email == "") {
+            errorMessage.innerText = "Email address cannot be empty";
+            return false;
+        }
+
+        if (!emailPattern.test(email)) {
+            errorMessage.innerText = "Enter a valid Email Id";
+            return false;
+        }
+
+        errorMessage.innerText = "";
+        return true;
+    }
+
+    function reload() {
+        if (window.sendData) window.sendData({ type: "save" });
+    }
+    function fieldValidation() {
+        let email = document.getElementById("email").value;
+        // let phone = document.getElementById("phone").value;
+        let reviews = document.getElementById("reviews").value;
+        let ratings = Array.from(document.getElementsByClassName("rating-stars")[0].getElementsByTagName('input')).find(s => s.checked).value
+        console.log(ratings);
+        console.log(typeof (ratings))
+        if (email == "") {
+            toastr.error("Please provide Email");
+            return false;
+
+        } else if (reviews == "") {
+            toastr.error("Please provide Reviews");
+            return false;
+
+        }
+        else if (ratings < 1 || ratings > 5) {
+            toastr.error("Please provide Ratings");
+            return false;
+
+        }
+        else {
+            return true;
+        }
+    }
+    function validatePhoneNumber() {
+        let ele = document.getElementById("phone");
+        const phoneValue = ele.value.replace(/\D/g, ''); // Remove any non-digit characters from the input
+
+        // Check if the phone number is 10 digits long
+        if (phoneValue.length === 10) {
+            document.getElementById('phone-error').style.display = 'none';
+            // document.getElementById('phone-error').innerText = "Phone address cannot be empty";
+        } else {
+            document.getElementById('phone-error').style.display = 'block';
+            document.getElementById('phone-error').innerText = "Phone Number should be 10 digit";
+        }
+    }
+    function validateRating(rating) {
+        // Convert the input to an integer
+        const parsedRating = parseInt(rating, 10);
+
+        // Check if the parsedRating is a number and within the valid range
+        if (isNaN(parsedRating) || parsedRating < 1 || parsedRating > 5) {
+            return false; // Invalid rating
+        }
+
+        return true; // Valid rating
+    }
+    function save() {
+        var validations = fieldValidation();
+        if (validations == false) {
+            //alert("Sorry cannot move forward. Please provide mandatory fields.");
+            console.log(
+                "Sorry cannot move forward. Please provide mandatory fields."
+            );
+        } else {
+            document.getElementById("cc_save").disabled = true;
+            //var portal_Settings = JSON.parse(localStorage.getItem("ucapps_portalSettings"));
+            //let baseUrl = window.libAuth.base_url;
+
+            //let user_App = JSON.parse(localStorage.getItem("userApps")).find(
+            //  (x) => x.app_name == "uncode"
+            //);
+
+            // let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+            const headers = Get_lib_auth();
+
+            let couponbody = {
+                // data: {
+
+                // lid:  document.getElementById('location_id').value,
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                reviews: document.getElementById("reviews").value,
+                //  rating: 1,
+                rating: document.querySelector('input[name="rating"]:checked').value
+                //const rating = parseInt(rating, 10);
+                //  },
+            };
+            //}
+            let cpostbody = JSON.stringify(couponbody);
+            console.log(cpostbody);
+
+            fetch(baseUrl + `service_contract/3826137329997193`, {
+                method: "POST",
+                headers: headers,
+                body: cpostbody,
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    toastr.success("Data is added Successfully");
+                    reload();
+
+                })
+                .catch((e) => {
+                    toastr.error(e);
+                    console.log(e);
+                    // alert("Error:",e);
+                });
+        }
+    }
+
+
+
+
+
+    getById();
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
